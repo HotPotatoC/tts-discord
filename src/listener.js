@@ -21,7 +21,8 @@ export default async function msgHandler(
           return channel.send({
             embed: {
               color: '#ce6666',
-              title: 'Please provide text for the text to speech command',
+              title: 'Missing Text',
+              description: 'Please provide text for the text to speech command',
             },
           })
         }
@@ -49,6 +50,8 @@ export default async function msgHandler(
               embed: {
                 color: '#ce6666',
                 title: 'Streamlabs API error :cry:',
+                description:
+                  'It appears streamlabs tts service is down, Please try again later.',
               },
             })
           }
@@ -61,11 +64,24 @@ export default async function msgHandler(
         })
       }
     }
+    const fields = []
+    for (const nationality of nationalities) {
+      fields.push({
+        name: capitalizeFirstLetter(nationality),
+        value: voices[nationality],
+        inline: true,
+      })
+    }
     return channel.send({
       embed: {
         color: '#ce6666',
-        title: 'You have to specify the voice for the tts bot',
-        description: 'For example `tts!brian hello world`',
+        title: 'Unknown voice',
+        description:
+          'You have to specify the voice for the tts bot. Available voices:',
+        fields,
+        footer: {
+          text: 'Usage tts!brian hello world',
+        },
       },
     })
   }
