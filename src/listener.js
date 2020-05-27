@@ -4,10 +4,7 @@ import { capitalizeFirstLetter } from './util/string.js'
 
 const prefix = process.env.PREFIX || 'tts!'
 
-export default async function msgHandler(
-  { author, content, channel, member },
-  user
-) {
+export default async ({ author, content, channel, member }, user) => {
   if (author == user) return
   if (content.startsWith(prefix)) {
     const text = content.slice(prefix.length).split(' ')
