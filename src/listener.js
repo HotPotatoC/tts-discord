@@ -1,6 +1,6 @@
-import { requestTTS } from './request.js'
-import { voices, nationalities } from './voices.js'
-import { capitalizeFirstLetter } from './util.js'
+import { requestTTS } from './network/request.js'
+import { voices, nationalities } from './util/constants.js'
+import { capitalizeFirstLetter } from './util/string.js'
 
 const prefix = process.env.PREFIX || 'tts!'
 
@@ -52,6 +52,7 @@ export default async function msgHandler(
                 title: 'Streamlabs API error :cry:',
                 description:
                   'It appears streamlabs tts service is down, Please try again later.',
+                footer: `Code: ${error.response.statusCode}`,
               },
             })
           }
