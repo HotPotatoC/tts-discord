@@ -65,16 +65,25 @@ export default async ({ author, content, channel, member }, user) => {
     return channel.send({
       embed: {
         color: '#ce6666',
-        title: 'Unknown voice',
+        title: 'Please Specify a Voice',
         description:
           'You have to specify the voice for the tts bot. Available voices:',
-        fields: nationalities.map((nationality) => ({
-          name: capitalizeFirstLetter(nationality),
-          value: voices[nationality],
-          inline: true,
-        })),
+        fields: [
+          ...nationalities.map((nationality) => ({
+            name: capitalizeFirstLetter(nationality),
+            value: voices[nationality],
+            inline: true,
+          })),
+          {
+            name: 'Usage Examples',
+            value:
+              '`tts!{voice} {text}`\n`tts!brian hello, world!`\n`tts!salli yes`',
+          },
+        ],
         footer: {
-          text: 'Usage tts!brian hello world',
+          text:
+            'Bot by Hot Potato, check the project on Github: https://github.com/HotPotatoC/tts-discord',
+          icon_url: 'https://avatars1.githubusercontent.com/u/43059506?v=4',
         },
       },
     })
