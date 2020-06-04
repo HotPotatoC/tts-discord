@@ -1,6 +1,6 @@
-import { requestTTS } from './network/request.js'
-import { voices, nationalities } from './util/constants.js'
-import { capitalizeFirstLetter } from './util/string.js'
+import { requestTTS } from '../network/request.js'
+import { voices, nationalities } from '../util/constants.js'
+import { capitalizeFirstLetter } from '../util/string.js'
 
 const prefix = process.env.PREFIX || 'tts!'
 
@@ -62,21 +62,17 @@ export default async ({ author, content, channel, member }, user) => {
         })
       }
     }
-    const fields = []
-    for (const nationality of nationalities) {
-      fields.push({
-        name: capitalizeFirstLetter(nationality),
-        value: voices[nationality],
-        inline: true,
-      })
-    }
     return channel.send({
       embed: {
         color: '#ce6666',
         title: 'Unknown voice',
         description:
           'You have to specify the voice for the tts bot. Available voices:',
-        fields,
+        fields: nationalities.map((nationality) => ({
+          name: capitalizeFirstLetter(nationality),
+          value: voices[nationality],
+          inline: true,
+        })),
         footer: {
           text: 'Usage tts!brian hello world',
         },

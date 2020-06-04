@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import { Client } from './struct/Client.js'
-import msgListener from './listener.js'
+import msgListener from './events/message.js'
 
 dotenv.config()
 
