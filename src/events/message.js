@@ -65,7 +65,7 @@ export default async ({ author, content, channel, member }, user) => {
     return channel.send({
       embed: {
         color: '#ce6666',
-        title: 'Please Specify a Voice',
+        title: 'Unkown Voice',
         description:
           'You have to specify the voice for the tts bot. Available voices:',
         fields: [
