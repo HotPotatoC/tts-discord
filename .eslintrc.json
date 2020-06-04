@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "commonjs": true,
@@ -10,7 +11,9 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "allowImportExportEverywhere": true
+    "allowImportExportEverywhere": true,
+    "ecmaVersion": 2020,
+    "sourceType": "module"
   },
   "extends": ["prettier"],
   "plugins": ["prettier"],
